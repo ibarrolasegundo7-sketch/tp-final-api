@@ -6,8 +6,10 @@ from managers.peliculaGeneroManage import PeliculaGeneroManage
 router = APIRouter(prefix="/peliculaGenero", tags=["peliculaGenero"])
 
 @router.get('/')
-def obtener_relaciones(conexion=Depends(obtener_conexion)):
-    return PeliculaGeneroManage.obtener(conexion)
+def obtener_relaciones(id_pelicula: int, conexion=Depends(obtener_conexion)):
+    if id_pelicula <= 0:
+        raise HTTPException(status_code=400, detail="El ID de la película debe ser mayor que cero")
+    return PeliculaGeneroManage.obtener(id_pelicula, conexion)
 
 @router.post('/agregar')
 def agregar_relacion(relacion: PeliculaGeneroModel, conexion=Depends(obtener_conexion)):

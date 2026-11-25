@@ -2,17 +2,16 @@ from interface import CRUD
 
 class PeliculaGeneroManage(CRUD):
 
-    def obtener(conexion):
+    def obtener(id_pelicula, conexion):
         res = conexion.execute("""
 
-            SELECT p.titulo, g.genero
+            SELECT g.genero
             FROM pelicula_genero AS pg
-            LEFT JOIN peliculas AS p
-                ON p.id = pg.id_pelicula
-            LEFT JOIN generos AS g
+            JOIN generos AS g
                 ON g.id = pg.id_genero
+            WHERE pg.id_pelicula = %s
 
-        """).fetchall()
+        """, (id_pelicula,)).fetchall()
         
         return [dict(item) for item in res]
 

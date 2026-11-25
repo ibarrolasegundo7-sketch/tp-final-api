@@ -6,8 +6,8 @@
 
 
 body {
-    background-color: #141414;
-    color: white;
+    background-color: #17191F;
+    color: #E8DCC6;
     font-family: Arial, sans-serif;
 }
 
@@ -20,12 +20,12 @@ body {
 
 .pelicula {
     width: 400px;
-    background-color: #222;
+    background-color: #343B48;
     border-radius: 10px;
     overflow: hidden;
     text-align: center;
     transition: transform 0.3s ease;
-    border: 1px solid #fff;
+    border: 1px solid #B69A76;
 }
 
 .pelicula img {
@@ -45,4 +45,112 @@ body {
 .pelicula:hover {
     transform: scale(1.05);
     cursor: pointer;
+}
+
+.fondoTransparente {
+    position: fixed;
+    inset: 0;
+    z-index: 9;
+    background: rgba(0, 0, 0, 0.35);
+    backdrop-filter: blur(6px);
+}
+
+.fondoTransparente.oculta {
+    display: none;
+}
+
+.peliculaEspecifica {
+    position: fixed;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: min(90vw, 520px);
+    max-height: 90vh;
+    overflow-y: auto;
+    border: 1px solid #B69A76;
+    border-radius: 18px;
+    background: #343B48;
+    box-shadow: 0 24px 70px rgba(0, 0, 0, 0.65);
+    color: #E8DCC6;
+}
+
+.peliculaEspecifica:empty {
+    display: none;
+}
+
+.peliculaEspecifica.oculta {
+    display: none;
+}
+
+.peliculaEspecifica .cerrarPelicula {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: grid;
+    place-items: center;
+    width: 36px;
+    height: 36px;
+    border: 1px solid #B69A76;
+    border-radius: 50%;
+    background: #17191F;
+    color: #E8DCC6;
+    font-size: 26px;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.peliculaEspecifica .cerrarPelicula:hover,
+.peliculaEspecifica .cerrarPelicula:focus-visible {
+    background: #B69A76;
+    color: #17191F;
+}
+
+.peliculaEspecifica > img {
+    display: block;
+    width: 100%;
+    height: clamp(220px, 40vh, 360px);
+    object-fit: cover;
+}
+
+.peliculaEspecifica > div {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    padding: 20px 24px 8px;
+}
+
+.peliculaEspecifica > div p {
+    padding: 7px 12px;
+    border: 1px solid rgba(182, 154, 118, 0.45);
+    border-radius: 100px;
+    background: rgba(182, 154, 118, 0.12);
+    font-size: 14px;
+}
+
+.peliculaEspecifica > p {
+    padding: 12px 24px 24px;
+    line-height: 1.6;
+}
+
+.peliculaEspecifica > p:first-of-type {
+    padding-bottom: 0;
+    color: #F4E5C8;
+    font-size: clamp(22px, 4vw, 30px);
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .peliculaEspecifica {
+        width: calc(100vw - 24px);
+        max-height: calc(100dvh - 24px);
+    }
+
+    .peliculaEspecifica > div {
+        padding: 16px 18px 6px;
+    }
+
+    .peliculaEspecifica > p {
+        padding: 10px 18px 18px;
+    }
 }
