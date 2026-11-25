@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from conexion.conexion import obtener_conexion
 from modelos.models import Pelicula
 from managers.peliculaManage import PeliculaManage
@@ -11,10 +11,14 @@ def obtener_peliculas(conexion=Depends(obtener_conexion)):
 
 @router.post('/agregar')
 def agregar_pelicula(pelicula: Pelicula, conexion=Depends(obtener_conexion)):
+    if not pelicula.titulo.strip():
+        raise HTTPException(status_code=400, detail="El título no puede estar vacío")
     return PeliculaManage.insertar(pelicula, conexion)
 
 @router.put('/editar')
 def editar_pelicula(id: int, pelicula: Pelicula, conexion=Depends(obtener_conexion)):
+    if not pelicula.titulo.strip():
+        raise HTTPException(status_code=400, detail="El título no puede estar vacío")
     return PeliculaManage.editar(id, pelicula, conexion)
 
 @router.get('/eliminar')

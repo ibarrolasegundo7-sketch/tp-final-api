@@ -10,7 +10,6 @@ load_dotenv()
 
 DATABASE_URL = os.getenv("DATABASE_URL")
 
-
 def obtener_conexion():
     if not DATABASE_URL:
         raise RuntimeError("No se encontró DATABASE_URL")

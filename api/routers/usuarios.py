@@ -1,4 +1,4 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, HTTPException
 from conexion.conexion import obtener_conexion
 from modelos.models import Usuario
 from managers.usuarioManage import UsuarioManage
@@ -11,10 +11,14 @@ def obtener_usuarios(conexion=Depends(obtener_conexion)):
 
 @router.post('/agregar')
 def agregar_usuario(usuario: Usuario, conexion=Depends(obtener_conexion)):
+    if not usuario.nombre.strip():
+        raise HTTPException(status_code=400, detail="El nombre no puede estar vacío")
     return UsuarioManage.insertar(usuario, conexion)
 
 @router.put('/editar')
 def editar_usuario(id: int, usuario: Usuario, conexion=Depends(obtener_conexion)):
+    if not usuario.nombre.strip():
+        raise HTTPException(status_code=400, detail="El nombre no puede estar vacío")
     return UsuarioManage.editar(id, usuario, conexion)
 
 @router.get('/eliminar')
