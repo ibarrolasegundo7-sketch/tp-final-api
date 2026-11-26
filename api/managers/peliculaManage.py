@@ -23,4 +23,5 @@ class PeliculaManage(CRUD):
             "DELETE FROM peliculas WHERE id = %s",
             (id,)
         )
+        conexion.commit()
         return {"mensaje": "película eliminada correctamente"}

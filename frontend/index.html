@@ -12,16 +12,48 @@
 <body>
     <nav class="nav">
         <h3>TP-Final-Frontend</h3>
+        <div class="accionesNav">
+            <button class="botonEditar" type="button" aria-label="Seleccionar película para editar" aria-pressed="false" title="Editar películas">✎</button>
+            <button class="botonBorrar" type="button" aria-label="Borrar película" aria-pressed="false" title="Borrar películas">🗑</button>
+        </div>
     </nav>
 
-    <section class="seccionPeliculas">
+    <div class="contenedorPeliculas">
 
-    </section>
+        <section class="seccionPeliculas"></section>
+
+        <button class="agregarPelicula" type="button">
+            <span class="iconoAgregar" aria-hidden="true">+</span>
+            <span>Agregar película</span>
+        </button>
+    </div>
 
     <div class="fondoTransparente oculta"></div>
 
-    <div class="peliculaEspecifica oculta">
+    <div class="peliculaEspecifica oculta"></div>
 
+    <div class="editarPelicula oculta">
+        <button class="cerrarEdicion" type="button" aria-label="Cerrar edición">×</button>
+        <h2>Editar película</h2>
+        <form class="formularioEdicion">
+            <label>Título <input name="titulo" required></label>
+            <label>Año <input name="anio" type="number" required></label>
+            <label>Portada (URL) <input name="portada" required></label>
+            <img class="vistaPreviaPortada" alt="Vista previa de la portada" hidden>
+            <p class="mensajePortada" role="status"></p>
+            <label>Director <input name="director" required></label>
+            <label>Sinopsis <textarea name="sinopsis" required></textarea></label>
+            <p class="mensajeEdicion" role="status"></p>
+            <button class="guardarEdicion" type="submit">Guardar cambios</button>
+        </form>
     </div>
+
+    <div class="seguroBorrar oculta" role="dialog" aria-modal="true" aria-labelledby="tituloBorrar">
+        <h2 id="tituloBorrar">¿Seguro?</h2>
+        <p class="mensajeBorrar" role="status"></p>
+        <button class="confirmarBorrar" type="button">Sí</button>
+        <button class="cancelarBorrar" type="button">No</button>
+    </div>
+
 </body>
 </html>
